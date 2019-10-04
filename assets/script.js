@@ -55,11 +55,9 @@ const toggleDarkMode = () => {
 const updateDisplay = () => {
   let seconds = Math.floor(elapsedTime / 1000);
 
-  const minutes = Math.floor(seconds / 60);
-  seconds = seconds % 60;
-
   const hours = Math.floor(seconds / 3600);
-  seconds = seconds % 3600;
+  const minutes = Math.floor((seconds / 60) % 60);
+  seconds = seconds % 60;
 
   hourElement.innerText = padDigit(hours);
   minuteElement.innerText = padDigit(minutes);
