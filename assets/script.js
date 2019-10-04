@@ -1,4 +1,4 @@
-let isStarted = false;
+let isRunning = false;
 let intervalId = null;
 let startedAt = null;
 let elapsedTime = 0;
@@ -13,11 +13,11 @@ const toggleButton = document.querySelector("#toggle");
 const resetButton = document.querySelector("#reset");
 
 const bootstrap = () => {
-  isStarted = localStorage.getItem("isStarted") === "true";
+  isRunning = localStorage.getItem("isRunning") === "true";
   startedAt = Number(localStorage.getItem("startedAt")) || null;
   elapsedTime = Number(localStorage.getItem("elapsedTime")) || 0;
 
-  if (isStarted) {
+  if (isRunning) {
     start();
   } else {
     updateDisplay();
@@ -48,7 +48,7 @@ const updateDisplay = () => {
 
 const start = () => {
   // Set flag and startedAt time.
-  isStarted = true;
+  isRunning = true;
 
   // If elapsed time is greater than 0, calculate the new start value and update it.
   if (elapsedTime) {
@@ -65,7 +65,7 @@ const start = () => {
   toggleButton.innerText = "Pause";
 
   localStorage.setItem("elapsedTime", elapsedTime);
-  localStorage.setItem("isStarted", isStarted);
+  localStorage.setItem("isRunning", isRunning);
   localStorage.setItem("startedAt", startedAt);
 
   intervalId = setInterval(() => {
@@ -79,21 +79,21 @@ const pause = () => {
   elapsedTime = getElapsedTime();
 
   // Set app state to default.
-  isStarted = false;
+  isRunning = false;
   toggleButton.innerText = "Start";
 
   clearInterval(intervalId);
   intervalId = null;
 
   localStorage.setItem("elapsedTime", elapsedTime);
-  localStorage.setItem("isStarted", isStarted);
+  localStorage.setItem("isRunning", isRunning);
 };
 
 const reset = () => {
   toggleButton.innerText = "Start";
 
   // Set app state to default.
-  isStarted = false;
+  isRunning = false;
   startedAt = null;
   elapsedTime = 0;
 
@@ -111,7 +111,7 @@ const reset = () => {
  * LISTENERS
  *****************************/
 toggleButton.addEventListener("click", () => {
-  if (!isStarted) {
+  if (!isRunning) {
     start();
   } else {
     pause();
