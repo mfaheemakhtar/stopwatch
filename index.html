@@ -1,3 +1,11 @@
+<!--  
+  Made by Faheem
+  https://faheem.dev
+
+  Dark Mode Switch stolen from Benjamin Réthoré
+  https://codepen.io/bnthor/pen/WQBNxO  
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,6 +32,28 @@
           <button class="stopwatch__buttons__button" id="reset" type="button">
             Reset
           </button>
+        </div>
+
+        <div class="darkModeSwitchWrapper">
+          <input
+            class="darkModeSwitch"
+            onclick="toggleDarkMode()"
+            id="darkModeSwitch"
+            type="checkbox"
+          />
+          <label for="darkModeSwitch" class="darkModeSwitch">
+            <span class="toggle__handler">
+              <span class="crater crater--1"></span>
+              <span class="crater crater--2"></span>
+              <span class="crater crater--3"></span>
+            </span>
+            <span class="star star--1"></span>
+            <span class="star star--2"></span>
+            <span class="star star--3"></span>
+            <span class="star star--4"></span>
+            <span class="star star--5"></span>
+            <span class="star star--6"></span>
+          </label>
         </div>
       </div>
     </main>

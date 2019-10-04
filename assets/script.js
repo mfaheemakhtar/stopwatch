@@ -2,6 +2,10 @@ let isRunning = false;
 let intervalId = null;
 let startedAt = null;
 let elapsedTime = 0;
+let isDarkModeActive = false;
+
+const body = document.querySelector("body");
+const darkModeSwitch = document.querySelector("#darkModeSwitch");
 
 // Display nodes.
 const hourElement = document.querySelector("#hour");
@@ -13,6 +17,7 @@ const toggleButton = document.querySelector("#toggle");
 const resetButton = document.querySelector("#reset");
 
 const bootstrap = () => {
+  isDarkModeActive = localStorage.getItem("isDarkModeActive") !== "true";
   isRunning = localStorage.getItem("isRunning") === "true";
   startedAt = Number(localStorage.getItem("startedAt")) || null;
   elapsedTime = Number(localStorage.getItem("elapsedTime")) || 0;
@@ -22,6 +27,8 @@ const bootstrap = () => {
   } else {
     updateDisplay();
   }
+
+  toggleDarkMode();
 };
 
 const padDigit = number => {
@@ -30,6 +37,19 @@ const padDigit = number => {
 
 const getElapsedTime = () => {
   return new Date().valueOf() - startedAt;
+};
+
+const toggleDarkMode = () => {
+  if (isDarkModeActive) {
+    body.classList.remove("dark");
+    darkModeSwitch.checked = false;
+  } else {
+    body.classList.add("dark");
+    darkModeSwitch.checked = true;
+  }
+
+  isDarkModeActive = !isDarkModeActive;
+  localStorage.setItem("isDarkModeActive", isDarkModeActive);
 };
 
 const updateDisplay = () => {
@@ -105,6 +125,7 @@ const reset = () => {
   updateDisplay();
 
   localStorage.clear();
+  localStorage.setItem("isDarkModeActive", isDarkModeActive);
 };
 
 /******************************
