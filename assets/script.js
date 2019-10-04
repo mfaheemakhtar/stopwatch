@@ -70,6 +70,8 @@ const pause = () => {
 };
 
 const reset = () => {
+  toggleButton.innerText = "Start";
+
   // Set app state to default.
   isStarted = false;
   startedAt = null;
