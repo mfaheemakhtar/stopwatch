@@ -58,13 +58,15 @@ const start = () => {
 };
 
 const pause = () => {
+  // Store the elapsed time.
   elapsedTime = getElapsedTime();
 
+  // Set app state to default.
   isStarted = false;
-  startedAt = null;
   toggleButton.innerText = "Start";
 
   clearInterval(intervalId);
+  intervalId = null;
 };
 
 const reset = () => {
