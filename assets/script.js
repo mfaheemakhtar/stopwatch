@@ -10,6 +10,7 @@ const secondElement = document.querySelector("#second");
 
 // Start/pause button node
 const toggleButton = document.querySelector("#toggle");
+const resetButton = document.querySelector("#reset");
 
 const padDigit = number => {
   return number < 10 ? `0${number}` : number;
@@ -54,6 +55,20 @@ const pause = () => {
   clearInterval(intervalId);
 };
 
+const reset = () => {
+  // Set app state to default.
+  isStarted = false;
+  startedAt = null;
+  elapsedTime = 0;
+
+  // Clear the interval.
+  clearInterval(intervalId);
+  intervalId = null;
+
+  // Update display so everything looks like new.
+  updateDisplay();
+};
+
 /******************************
  * LISTENERS
  *****************************/
@@ -64,3 +79,5 @@ toggleButton.addEventListener("click", () => {
     pause();
   }
 });
+
+resetButton.addEventListener("click", reset);
