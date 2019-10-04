@@ -12,6 +12,18 @@ const secondElement = document.querySelector("#second");
 const toggleButton = document.querySelector("#toggle");
 const resetButton = document.querySelector("#reset");
 
+const bootstrap = () => {
+  isStarted = localStorage.getItem("isStarted") === "true";
+  startedAt = Number(localStorage.getItem("startedAt")) || null;
+  elapsedTime = Number(localStorage.getItem("elapsedTime")) || 0;
+
+  if (isStarted) {
+    start();
+  } else {
+    updateDisplay();
+  }
+};
+
 const padDigit = number => {
   return number < 10 ? `0${number}` : number;
 };
@@ -41,15 +53,20 @@ const start = () => {
   // If elapsed time is greater than 0, calculate the new start value and update it.
   if (elapsedTime) {
     startedAt = new Date().valueOf() - elapsedTime;
+    elapsedTime = 0;
   }
 
   // If elapsed time is 0, it means the stopwatch is not paused and we should use
   // the old startedAt value.
   else {
-    startedAt = new Date().valueOf();
+    startedAt = startedAt || new Date().valueOf();
   }
 
   toggleButton.innerText = "Pause";
+
+  localStorage.setItem("elapsedTime", elapsedTime);
+  localStorage.setItem("isStarted", isStarted);
+  localStorage.setItem("startedAt", startedAt);
 
   intervalId = setInterval(() => {
     elapsedTime = getElapsedTime();
@@ -67,6 +84,9 @@ const pause = () => {
 
   clearInterval(intervalId);
   intervalId = null;
+
+  localStorage.setItem("elapsedTime", elapsedTime);
+  localStorage.setItem("isStarted", isStarted);
 };
 
 const reset = () => {
@@ -83,6 +103,8 @@ const reset = () => {
 
   // Update display so everything looks like new.
   updateDisplay();
+
+  localStorage.clear();
 };
 
 /******************************
@@ -97,3 +119,5 @@ toggleButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", reset);
+
+bootstrap();
