@@ -17,7 +17,7 @@ const padDigit = number => {
 };
 
 const getElapsedTime = () => {
-  return new Date() - startedAt;
+  return new Date().valueOf() - startedAt;
 };
 
 const updateDisplay = () => {
@@ -35,8 +35,20 @@ const updateDisplay = () => {
 };
 
 const start = () => {
+  // Set flag and startedAt time.
   isStarted = true;
-  startedAt = new Date() - elapsedTime;
+
+  // If elapsed time is greater than 0, calculate the new start value and update it.
+  if (elapsedTime) {
+    startedAt = new Date().valueOf() - elapsedTime;
+  }
+
+  // If elapsed time is 0, it means the stopwatch is not paused and we should use
+  // the old startedAt value.
+  else {
+    startedAt = new Date().valueOf();
+  }
+
   toggleButton.innerText = "Pause";
 
   intervalId = setInterval(() => {
