@@ -3,10 +3,12 @@ let intervalId = null;
 let startedAt = null;
 let elapsedTime = 0;
 
+// Display nodes.
 const hourElement = document.querySelector("#hour");
 const minuteElement = document.querySelector("#minute");
 const secondElement = document.querySelector("#second");
 
+// Start/pause button node
 const toggleButton = document.querySelector("#toggle");
 
 const padDigit = number => {
@@ -17,7 +19,7 @@ const getElapsedTime = () => {
   return new Date() - startedAt;
 };
 
-const updateTime = () => {
+const updateDisplay = () => {
   let seconds = Math.floor(elapsedTime / 1000);
 
   const minutes = Math.floor(seconds / 60);
@@ -38,8 +40,8 @@ const start = () => {
 
   intervalId = setInterval(() => {
     elapsedTime = getElapsedTime();
-    updateTime();
-  }, 1000);
+    updateDisplay();
+  }, 100);
 };
 
 const pause = () => {
