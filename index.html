@@ -1,0 +1,63 @@
+<!--  
+  Made by Faheem
+  https://faheem.dev
+
+  Dark Mode Switch stolen from Benjamin Réthoré
+  https://codepen.io/bnthor/pen/WQBNxO  
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="/assets/styles.css" rel="stylesheet" />
+    <title>Stopwatch</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="stopwatch">
+        <div class="stopwatch__display">
+          <span class="stopwatch__display__digits" id="hour">00</span>
+          <span class="stopwatch__display__separator">:</span>
+          <span class="stopwatch__display__digits" id="minute">00</span>
+          <span class="stopwatch__display__separator">:</span>
+          <span class="stopwatch__display__digits" id="second">00</span>
+        </div>
+
+        <div class="stopwatch__buttons">
+          <button class="stopwatch__buttons__button" id="toggle" type="button">
+            Start
+          </button>
+          <button class="stopwatch__buttons__button" id="reset" type="button">
+            Reset
+          </button>
+        </div>
+
+        <div class="darkModeSwitchWrapper">
+          <input
+            class="darkModeSwitch"
+            onclick="toggleDarkMode()"
+            id="darkModeSwitch"
+            type="checkbox"
+          />
+          <label for="darkModeSwitch" class="darkModeSwitch">
+            <span class="toggle__handler">
+              <span class="crater crater--1"></span>
+              <span class="crater crater--2"></span>
+              <span class="crater crater--3"></span>
+            </span>
+            <span class="star star--1"></span>
+            <span class="star star--2"></span>
+            <span class="star star--3"></span>
+            <span class="star star--4"></span>
+            <span class="star star--5"></span>
+            <span class="star star--6"></span>
+          </label>
+        </div>
+      </div>
+    </main>
+
+    <script src="/assets/script.js"></script>
+  </body>
+</html>
