@@ -30,10 +30,20 @@ body {
 
 .stopwatch__display__digits {
   font-size: 5rem;
+  font-family: 'Orbitron';
+  background: -webkit-linear-gradient(red, rgb(245, 105, 25));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px yellow, 0 0 5px red;
 }
 
 .stopwatch__display__separator {
   font-size: 5rem;
+  font-family: 'Orbitron';
+  background: -webkit-linear-gradient(red, rgb(182, 39, 21));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px yellow, 0 0 5px red;
 }
 
 .stopwatch__buttons {
@@ -52,6 +62,7 @@ body {
   cursor: pointer;
   margin: 0 0.5rem;
   padding: 0.5rem 1.5rem;
+  border-radius: 20px;
 }
 
 .stopwatch__buttons__button:hover {
